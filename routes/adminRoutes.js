@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const router = express.Router();
-const Admin = require("../models/Admin");
+const Admin = require("../models/admin");
 
 // ==============================
 // Create Default Admin
