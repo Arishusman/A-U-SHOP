@@ -104,5 +104,36 @@ router.delete("/:id", async (req, res) => {
         });
     }
 });
+// ==========================
+// Track Order By Phone
+// ==========================
+router.get("/track/:phone", async (req, res) => {
+    try {
+
+        const order = await Order.findOne({
+            phone: req.params.phone
+        }).sort({ createdAt: -1 });
+
+        if (!order) {
+            return res.status(404).json({
+                success: false,
+                message: "Order Not Found"
+            });
+        }
+
+        res.json({
+            success: true,
+            order
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+});
 
 module.exports = router;
