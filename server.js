@@ -64,3 +64,7 @@ app.listen(PORT, () => {
 app.get("/test123", (req, res) => {
     res.send("TEST OK");
 });
+
+app.get("/hello", (req, res) => {
+    res.send("HELLO WORKING");
+});
