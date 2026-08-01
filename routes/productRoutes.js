@@ -8,10 +8,7 @@ const upload = require("../middleware/upload");
 // GET ALL PRODUCTS
 // ===================================
 
-router.put("/:id", upload.single("image"), async (req, res) => {
-
-    console.log("BODY =", req.body);
-    console.log("FILE =", req.file);
+router.get("/", async (req, res) => {
 
     try {
 
@@ -22,25 +19,17 @@ router.put("/:id", upload.single("image"), async (req, res) => {
             products
         });
 
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
     }
-
-    catch (error) {
-
-    console.error("UPDATE ERROR =", error);
-
-    res.status(500).json({
-        success: false,
-        message: error.message
-    });
-
-}
 
 });
 
-
-// ===================================
-// ADD PRODUCT
-// ===================================
 
 // ===================================
 // ADD PRODUCT
