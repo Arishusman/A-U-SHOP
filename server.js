@@ -60,3 +60,7 @@ app.listen(PORT, () => {
     console.log("MongoDB Error:", err);
 
 });
+
+app.get("/test123", (req, res) => {
+    res.send("TEST OK");
+});
