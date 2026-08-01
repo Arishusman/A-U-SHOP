@@ -8,7 +8,10 @@ const upload = require("../middleware/upload");
 // GET ALL PRODUCTS
 // ===================================
 
-router.get("/", async (req, res) => {
+router.put("/:id", upload.single("image"), async (req, res) => {
+
+    console.log("BODY =", req.body);
+    console.log("FILE =", req.file);
 
     try {
 
@@ -23,12 +26,14 @@ router.get("/", async (req, res) => {
 
     catch (error) {
 
-        res.status(500).json({
-            success: false,
-            message: error.message
-        });
+    console.error("UPDATE ERROR =", error);
 
-    }
+    res.status(500).json({
+        success: false,
+        message: error.message
+    });
+
+}
 
 });
 
@@ -37,7 +42,13 @@ router.get("/", async (req, res) => {
 // ADD PRODUCT
 // ===================================
 
+// ===================================
+// ADD PRODUCT
+// ===================================
+
 router.post("/", upload.single("image"), async (req, res) => {
+
+    console.log("REQ.FILE =", req.file);
 
     try {
 
@@ -54,7 +65,9 @@ router.post("/", upload.single("image"), async (req, res) => {
 
         });
 
+
         const savedProduct = await product.save();
+
 
         res.status(201).json({
 
@@ -64,8 +77,8 @@ router.post("/", upload.single("image"), async (req, res) => {
 
         });
 
-    }
 
+    } 
     catch (error) {
 
         res.status(500).json({
@@ -86,6 +99,7 @@ router.post("/", upload.single("image"), async (req, res) => {
 
 router.put("/:id", upload.single("image"), async (req, res) => {
 
+    
     try { const updateData = {
 
     name: req.body.name,
