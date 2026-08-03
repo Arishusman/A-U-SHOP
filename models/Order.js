@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
 
+    orderId: {
+        type: String,
+        unique: true
+    },
+
     customerName: {
         type: String,
         required: true
@@ -30,6 +35,16 @@ const orderSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true
+    },
+
+    paymentMethod: {
+        type: String,
+        default: "Cash On Delivery"
+    },
+
+    paymentStatus: {
+        type: String,
+        default: "Pending"
     },
 
     status: {
